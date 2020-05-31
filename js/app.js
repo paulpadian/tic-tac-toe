@@ -9,7 +9,7 @@ window.gameMatrix = [
 //checkers for win no loss possible on move
 
 function checkVert(e){
-    window.gameMatrix.forEach( => console.log(element));
+    window.gameMatrix.forEach(element => console.log(element));
 }
 
 function checkHori(){
@@ -22,8 +22,19 @@ funtion checkDiag(){
 }
 
 //board checker to init follow fn, log winner, send to message
-function checkBoard(player) {
-    let winner = false; 
+function checkForWin(player) {
+    const winner = false; 
+
+    if winner
+}
+
+function updateBoard() {
+    const currentPlayer = 
 
 }
+
+document.querySelectorAll('.game').forEach(element => {
+    element.addEventListener('click', updateBoard(element.value));
+})
+
 
