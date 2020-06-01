@@ -7,31 +7,30 @@ window.gameMatrix = [
 //global var for player needed
 
 window.player = "x";
+window.winner= undefined;
 
 
 //checkers for win no loss possible on move
 
 function checkVert() {
 
-    window.gameMatrix.forEach(row => {
-        let count = 0;
-
-        row.forEach(block => {
-            if (block === "x") {
-                countX++
-            }
-            if (countX === 3) {
-                return checkForWinner(x)
-            }
-            if (countY === 3) {
-                return checkForWinner(y)
-            }
-        })
-    });
 }
 
 function checkHori() {
-    let count = 0;
+  
+    window.gameMatrix.forEach(row => {
+        let count = 0;
+    
+        row.forEach(block => {
+            if (block === "x") {
+                count++
+            }
+            if (count === 3) {
+                window.winner = "x"
+                return displayWinner()
+            }
+        })
+    });
 
 };
 
@@ -40,23 +39,26 @@ function checkDiag() {
     //     let count = 0;
 
 }
+function checkBoard(){
+    return checkHori();
+
+}
+
 function displayWinner() {
+    console.log(`${window.winner} has won the game`)
 
 }
 
 //board checker to init follow fn, log winner, send to message
-function checkForWin(player) {
-    // const winner = false;
-    // //if winner 
-    // if winner
-
+function checkForWinner() {
+    return checkBoard();
 }
 
 function updateBoard(position) {
     position = JSON.parse(position);
-    console.log(window.gameMatrix[position[0]][position[1]], 'here')
     window.gameMatrix[position[0]][position[1]] = "x"
     console.log(window.gameMatrix)
+    return checkForWinner();
 }
 
 document.querySelectorAll('.block').forEach(element => {
