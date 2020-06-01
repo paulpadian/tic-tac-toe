@@ -53,12 +53,10 @@ function checkDiag() {
     }
 };
 
-
+//math random for board location computer move
 
 function checkBoard() {
-    if (winner) {
-        return displayWinner();
-    }
+    
     if (!window.winner) {
         checkHori();
     }
@@ -67,20 +65,24 @@ function checkBoard() {
     }
     if (!window.winner) {
         checkDiag();
-    }
+    } 
 
-
+   
 }
 
-function drawCondition() {
-
+//conditional if statement for draw, x000xxxx0 xx000xx0x xx000xxx0 only conditions
+function displayDraw() {
+    console.log('draw')
+   
 }
 
 function displayWinner() {
     console.log(`${window.winner} has won the game`)
     document.getElementById("display").innerText = `${window.player} has won the game`
-
+    
 }
+
+
 
 //board checker to init follow fn, log winner, send to message
 function displayPlayer() {
@@ -94,6 +96,8 @@ function updateBoard(position) {
     window.gameMatrix[position[0]][position[1]] = window.player;
     console.log(window.gameMatrix)
     checkBoard();
+    displayDraw();
+    //kind of want to break switcher into fn
     if (window.player === "x") {
         window.player = "o"
     } else {
