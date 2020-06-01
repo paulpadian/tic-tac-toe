@@ -1,3 +1,12 @@
 h1 {
   color: purple;
 }
+
+.game {
+  width: 50vw
+}
+.block {
+  width:100px;
+  height:100px;
+  border: 2px dotted;
+}
