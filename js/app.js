@@ -72,6 +72,10 @@ function checkBoard() {
 
 }
 
+function drawCondition() {
+
+}
+
 function displayWinner() {
     console.log(`${window.winner} has won the game`)
     document.getElementById("display").innerText = `${window.player} has won the game`
@@ -79,28 +83,37 @@ function displayWinner() {
 }
 
 //board checker to init follow fn, log winner, send to message
+function displayPlayer() {
+    document.getElementById("playerID").innerText = `${window.player}'s move`
+}
 
 function updateBoard(position) {
     document.getElementById(position).innerText = window.player
+
     position = JSON.parse(position);
     window.gameMatrix[position[0]][position[1]] = window.player;
     console.log(window.gameMatrix)
     checkBoard();
     if (window.player === "x") {
         window.player = "o"
-    } else[
+    } else {
         window.player = "x"
-    ]
+    }
+    displayPlayer();
 
 }
 
 document.querySelectorAll('.block').forEach(element => {
     element.addEventListener('click', () => {
-        if(!element.innerText) {
+        if (!element.innerText) {
             updateBoard(element.id)
         }
     });
 })
+
+
+
+
 
 
 
