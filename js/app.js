@@ -79,6 +79,7 @@ function checkBoard(){
 
 function displayWinner() {
     console.log(`${window.winner} has won the game`)
+    document.getElementById("display").innerText = `${window.player} has won the game`
 
 }
 
