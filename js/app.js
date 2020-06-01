@@ -45,17 +45,14 @@ function checkHori() {
 
 
 function checkDiag() {
-    window.gameMatrix[0].forEach((diag, i) => {
-        if(diag === window.player) {
-            if(window.gameMatrix[1][i+1] === window.player && window.gameMatrix[2][i+2] === window.player) {
+    if(window.gameMatrix[0][0] === window.player && window.gameMatrix[1][1] === window.player && window.gameMatrix[2][2] === window.player) {
                 window.winner = window.player
                 displayWinner();
-            }
-        
-        }
-
-    })
-
+    }
+    if(window.gameMatrix[0][2] === window.player && window.gameMatrix[1][1] === window.player && window.gameMatrix[2][0] === window.player) {
+                window.winner = window.player
+                displayWinner();
+    }
 };
     
 
@@ -80,7 +77,7 @@ function checkBoard(){
 function displayWinner() {
     console.log(`${window.winner} has won the game`)
     document.getElementById("display").innerText = `${window.player} has won the game`
-
+    
 }
 
 //board checker to init follow fn, log winner, send to message
@@ -95,7 +92,7 @@ function updateBoard(position) {
     console.log(window.gameMatrix)
     checkForWinner();
     if(window.player === "x") {
-        window.player = "y"
+        window.player = "o"
     } else [
         window.player = "x"
     ]

@@ -1,7 +1,10 @@
-h1 {
-  color: purple;
+html
+body{
+  text-align: center;
 }
-
+h1 {
+  color: rgb(248, 93, 248);
+}
 .game {
   background-color: white;
   border: 1px dotted;
@@ -19,4 +22,15 @@ h1 {
   border: 2px dotted;
   padding: 0px;
   margin: 0px;
+  text-align: center;
+  font-size: 70px;
+}
+
+.display{
+font-size: 90px;
+}
+
+button {
+  margin-top: 3vw;
+  padding: 1vw;
 }
