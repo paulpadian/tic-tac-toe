@@ -13,8 +13,17 @@ window.winner= undefined;
 //checkers for win no loss possible on move
 
 function checkVert() {
+    
+    window.gameMatrix[0].forEach((col, index) => {
+        if (col === window.player) {
+            if(window.gameMatrix[1][index] === window.player && window.gameMatrix[2][index] === window.player) {
+            window.winner = "x"
+            displayWinner();                
+            }
+        }
+    });
 
-}
+};
 
 function checkHori() {
   
@@ -22,12 +31,12 @@ function checkHori() {
         let count = 0;
     
         row.forEach(block => {
-            if (block === "x") {
+            if (block === window.player) {
                 count++
             }
             if (count === 3) {
                 window.winner = "x"
-                return displayWinner()
+                displayWinner()
             }
         })
     });
@@ -36,11 +45,19 @@ function checkHori() {
 
 
 function checkDiag() {
-    //     let count = 0;
-
+    
 }
+
 function checkBoard(){
-    return checkHori();
+    if(winner) {
+        return displayWinner();
+    }
+    if(!window.winner) {
+        checkHori();
+    } 
+    if(!window.winner) {
+        checkVert();
+    }
 
 }
 
@@ -56,9 +73,15 @@ function checkForWinner() {
 
 function updateBoard(position) {
     position = JSON.parse(position);
-    window.gameMatrix[position[0]][position[1]] = "x"
+    window.gameMatrix[position[0]][position[1]] = window.player;
     console.log(window.gameMatrix)
-    return checkForWinner();
+    checkForWinner();
+    if(window.player === "x") {
+        window.player = "y"
+    } else [
+        window.player = "x"
+    ]
+
 }
 
 document.querySelectorAll('.block').forEach(element => {
