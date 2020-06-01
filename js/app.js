@@ -17,7 +17,7 @@ function checkVert() {
     window.gameMatrix[0].forEach((col, index) => {
         if (col === window.player) {
             if(window.gameMatrix[1][index] === window.player && window.gameMatrix[2][index] === window.player) {
-            window.winner = "x"
+            window.winner = window.player
             displayWinner();                
             }
         }
@@ -35,7 +35,7 @@ function checkHori() {
                 count++
             }
             if (count === 3) {
-                window.winner = "x"
+                window.winner = window.player
                 displayWinner()
             }
         })
@@ -45,8 +45,20 @@ function checkHori() {
 
 
 function checkDiag() {
+    window.gameMatrix[0].forEach((diag, i) => {
+        if(diag === window.player) {
+            if(window.gameMatrix[1][i+1] === window.player && window.gameMatrix[2][i+2] === window.player) {
+                window.winner = window.player
+                displayWinner();
+            }
+        
+        }
+
+    })
+
+};
     
-}
+
 
 function checkBoard(){
     if(winner) {
@@ -58,6 +70,10 @@ function checkBoard(){
     if(!window.winner) {
         checkVert();
     }
+    if(!window.winner) {
+        checkDiag();
+    }
+  
 
 }
 
@@ -72,6 +88,7 @@ function checkForWinner() {
 }
 
 function updateBoard(position) {
+    document.getElementById(position).innerText = window.player
     position = JSON.parse(position);
     window.gameMatrix[position[0]][position[1]] = window.player;
     console.log(window.gameMatrix)
@@ -81,11 +98,15 @@ function updateBoard(position) {
     } else [
         window.player = "x"
     ]
-
+    
 }
 
 document.querySelectorAll('.block').forEach(element => {
     element.addEventListener('click', () => updateBoard(element.id));
 })
+
+
+
+
 
 
