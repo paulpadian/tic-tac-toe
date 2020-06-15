@@ -8,6 +8,7 @@ window.gameMatrix = [
 
 window.player = "x";
 window.winner = undefined;
+
 //checkers for win no loss possible on move click
 
 function checkVert() {
@@ -56,7 +57,6 @@ function checkDiag() {
 //math random for board location computer move
 
 function checkBoard() {
-    
     if (!window.winner) {
         checkHori();
     }
@@ -65,23 +65,30 @@ function checkBoard() {
     }
     if (!window.winner) {
         checkDiag();
-    } 
-
-   
+    }    
 }
 
 //conditional if statement for draw, x000xxxx0 xx000xx0x xx000xxx0 only conditions
-function displayDraw() {
-    console.log('draw')
-   
+let count = 0; 
+function displayDraw(position) {
+    count++
+    if(count === 8) {
+        document.getElementById("display").innerText = `It's a Tie!`
+        document.querySelectorAll(".block").forEach(element => {
+            element.style.pointerEvents = "none";
+        });
+    }
 }
+    
+
 
 function displayWinner() {
+    document.querySelectorAll(".block").forEach(element => {
+        element.style.pointerEvents = "none";
+    });
     console.log(`${window.winner} has won the game`)
-    document.getElementById("display").innerText = `${window.player} has won the game`
-    
+    document.getElementById("display").innerText = `${window.player} has won the game!`    
 }
-
 
 
 //board checker to init follow fn, log winner, send to message
@@ -96,7 +103,7 @@ function updateBoard(position) {
     window.gameMatrix[position[0]][position[1]] = window.player;
     console.log(window.gameMatrix)
     checkBoard();
-    displayDraw();
+    displayDraw(position);
     //kind of want to break switcher into fn
     if (window.player === "x") {
         window.player = "o"
